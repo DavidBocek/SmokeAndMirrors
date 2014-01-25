@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void UpdatePositionAndRotation(){
-		velocity.z = Input.GetAxis ("Vertical") * walkSpeed;
+		velocity.z = Input.GetButton("Run") ? Input.GetAxis ("Vertical") * runSpeed : Input.GetAxis ("Vertical") * walkSpeed;
 		velocity.x = Input.GetAxis ("Horizontal") * strafeSpeed;
 
 		Vector3 rotation = transform.localEulerAngles;
