@@ -9,6 +9,7 @@ public class Door : MonoBehaviour {
 	public Transform startAnimationTransform;
 	public Transform finishAnimationTransform;
 	public Transform hingePoint;
+	public Vector3 initialRotation;
 
 	public Transform teleportLocationTransform;
 
@@ -76,28 +77,26 @@ public class Door : MonoBehaviour {
 	#region finishing actions
 
 	void CloseDoor(){
-		StartCoroutine("cCloseDoor");
+		StartCoroutine("cCloseDoor",true);
 	}
-	IEnumerator cCloseDoor(){
-		float t = 0f;
-		while (t<=.9f){
-			transform.RotateAround(hingePoint.position,Vector3.up,-10f);
-			t += .1f;
-			yield return null;
-		}
-		player.GetComponent<PlayerMovement>().canControl = true;
+	IEnumerator cCloseDoor(bool getControl){
+		//play close sound
+		transform.RotateAround(hingePoint.position,Vector3.up,-90f);
+		transform.localEulerAngles = initialRotation;
+		yield return new WaitForSeconds(.5f);
+		if (getControl) player.GetComponent<PlayerMovement>().canControl = true;
+		yield return null;
 	}
 
 	void CloseDoorAndTeleport(){
-		StartCoroutine("cCloseDoor");
-		StartCoroutine("cTeleport");
+		StartCoroutine("cCloseDoor",false);
+		StartCoroutine("cTeleport",true);
 	}
-	IEnumerator cTeleport(){
-		yield return new WaitForSeconds(1f);
+	IEnumerator cTeleport(bool getControl){
 		player.transform.position = teleportLocationTransform.position;
 		player.transform.rotation = teleportLocationTransform.rotation;
-		player.GetComponent<PlayerMovement>().canControl = true;
-		Debug.Log ("teleported");
+		if (getControl) player.GetComponent<PlayerMovement>().canControl = true;
+		yield return null;
 	}
 
 	#endregion
