@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour {
 	public float maxFallSpeed;
 	public bool sprinting {get; set;}
 	public bool moving {get; set;}
+	public bool canControl {get; set;}
 
 	private Vector3 velocity;
 	private CharacterController controller;
@@ -18,6 +19,7 @@ public class PlayerMovement : MonoBehaviour {
 	private float dt;
 	// Use this for initialization
 	void Start () {
+		canControl = true;
 		controller = GetComponent<CharacterController>();
 		velocity = Vector3.zero;
 	}
@@ -25,8 +27,20 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		dt = Time.smoothDeltaTime;
-		UpdateGravity();
-		UpdatePositionAndRotation();
+		if (canControl){
+			UpdateInput();
+			UpdateGravity();
+			UpdatePositionAndRotation();
+		} else {
+			moving = false;
+			sprinting = false;
+		}
+	}
+
+	void UpdateInput(){
+		if (Input.GetButtonDown("Action")){
+			Messenger.Broadcast<Transform>("PlayerActionButtonPressed",transform);
+		}
 	}
 
 	void UpdateGravity(){
@@ -49,7 +63,8 @@ public class PlayerMovement : MonoBehaviour {
 
 		transform.localEulerAngles = rotation;
 
-		moving = velocity.sqrMagnitude >= 1f;
+		Vector2 xzVel = new Vector2(velocity.x,velocity.z);
+		moving = xzVel.sqrMagnitude >= 1f;
 
 		controller.Move(velocity*dt);
 	}

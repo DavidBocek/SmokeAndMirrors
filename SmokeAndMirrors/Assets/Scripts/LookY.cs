@@ -11,6 +11,7 @@ public class LookY : MonoBehaviour {
 	}
 	
 	void LateUpdate () {
+		if (!GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().canControl) return;
 		//adjust vertical rotation
 		float curRotX = transform.eulerAngles.x;
 		float xAngleAdjust = inverted ? Input.GetAxis("Mouse Y") : -Input.GetAxis ("Mouse Y");
