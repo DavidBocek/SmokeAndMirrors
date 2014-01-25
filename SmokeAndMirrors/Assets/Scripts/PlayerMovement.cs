@@ -9,7 +9,9 @@ public class PlayerMovement : MonoBehaviour {
 	public float gravityAcceleration;
 	public float mouseXSensitivity;
 	public float maxFallSpeed;
-	
+	public bool sprinting {get; set;}
+	public bool moving {get; set;}
+
 	private Vector3 velocity;
 	private CharacterController controller;
 
@@ -19,7 +21,7 @@ public class PlayerMovement : MonoBehaviour {
 		controller = GetComponent<CharacterController>();
 		velocity = Vector3.zero;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		dt = Time.smoothDeltaTime;
@@ -31,10 +33,13 @@ public class PlayerMovement : MonoBehaviour {
 		if (!controller.isGrounded){
 			velocity.y -= gravityAcceleration * dt;
 			velocity.y = Mathf.Max (velocity.y,maxFallSpeed);
-		}
+		} /*if (Input.GetButtonDown("Jump") && controller.isGrounded){
+			velocity.y = jumpImpulse;
+		}*/
 	}
 
 	void UpdatePositionAndRotation(){
+		sprinting = Input.GetButton ("Run");
 		velocity.z = Input.GetButton("Run") ? Input.GetAxis ("Vertical") * runSpeed : Input.GetAxis ("Vertical") * walkSpeed;
 		velocity.x = Input.GetAxis ("Horizontal") * strafeSpeed;
 
@@ -43,6 +48,9 @@ public class PlayerMovement : MonoBehaviour {
 		velocity = transform.TransformDirection(velocity);
 
 		transform.localEulerAngles = rotation;
+
+		moving = velocity.sqrMagnitude >= 1f;
+
 		controller.Move(velocity*dt);
 	}
 }
