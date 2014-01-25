@@ -11,6 +11,7 @@ public class Footsteps : MonoBehaviour {
 	private float walkTimer;
 	private float sprintTimer;
 	private PlayerMovement playerMovement;
+	private bool movedLastFrame;
 
 	// Use this for initialization
 	void Start () {
@@ -35,7 +36,15 @@ public class Footsteps : MonoBehaviour {
 			} else {
 				walkTimer -= Time.smoothDeltaTime;
 			}
+		} else {
+			if (walkTimer != walkFootstepTime) walkTimer = walkFootstepTime;
+			if (sprintTimer != sprintFootstepTime) sprintTimer = sprintFootstepTime;
+			//play a footstep if we just stopped moving
+			if (movedLastFrame){
+				PlaySound();
+			}
 		}
+		movedLastFrame = playerMovement.sprinting || playerMovement.moving;
 	}
 
 	/// <summary>
