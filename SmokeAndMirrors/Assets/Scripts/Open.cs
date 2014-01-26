@@ -36,7 +36,7 @@ public class Open : MonoBehaviour {
 		}
 		
 		gameObject.GetComponent<BoxCollider>().enabled = true;
-		AudioSource.PlayClipAtPoint(completionSound,transform.position,.6f);
+		AudioSource.PlayClipAtPoint(completionSound,transform.position,1f);
 		//activate ending action
 		//DoOnDoorFinish();
 	}
