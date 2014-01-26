@@ -68,4 +68,8 @@ public class PlayerMovement : MonoBehaviour {
 
 		controller.Move(velocity*dt);
 	}
+
+	void OnTriggerEnter(Collider other){
+		Messenger.Broadcast("TriggerHit",other.gameObject);
+	}
 }
