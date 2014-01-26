@@ -148,8 +148,10 @@ public class Door : MonoBehaviour {
 
 	IEnumerator cEndGame(){
 		float t = 0;
+		drawText = true;
 		while (t<=1f){
-			Camera.main.fieldOfView += t*5f;
+			Camera.main.fieldOfView += t*.17f;
+			t += .005f;
 			yield return null;
 		}
 		player.gameObject.GetComponent<PlayerMovement>().canControl = false;
@@ -158,4 +160,10 @@ public class Door : MonoBehaviour {
 	}
 
 	#endregion
+	private bool drawText = false;
+	void OnGUI(){
+		if (drawText){
+			GUI.TextField(new Rect(Screen.width/2,Screen.height/2,80f,20f),"KTHNXBAI");
+		}
+	}
 }

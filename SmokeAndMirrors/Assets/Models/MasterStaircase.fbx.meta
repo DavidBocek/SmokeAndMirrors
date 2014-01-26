@@ -1,0 +1,133 @@
+fileFormatVersion: 2
+guid: ea2c10e9e06c3324cb7e7098879ade06
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: Deathbox
+    100002: KBAR2
+    100004: KBAR3
+    100006: Longcase
+    100008: MasterStairCase
+    100010: //RootNode
+    100012: polySurface1
+    100014: polySurface2
+    100016: pPyramid1
+    100018: pPyramid2
+    100020: pTorus1
+    100022: pTorus2
+    100024: transform1
+    100026: transform10
+    100028: transform11
+    100030: transform12
+    100032: transform13
+    100034: transform14
+    100036: transform15
+    100038: transform16
+    100040: transform17
+    100042: transform2
+    100044: transform3
+    100046: transform4
+    100048: transform5
+    100050: transform6
+    100052: transform7
+    100054: transform8
+    100056: transform9
+    100058: Windup:pCone1
+    100060: Windup:pCube1
+    100062: Windup:pCube12
+    100064: Windup:pCube2
+    100066: Windup:pCube3
+    100068: Windup:pCube4
+    100070: Windup:pCube5
+    400000: Deathbox
+    400002: KBAR2
+    400004: KBAR3
+    400006: Longcase
+    400008: MasterStairCase
+    400010: //RootNode
+    400012: polySurface1
+    400014: polySurface2
+    400016: pPyramid1
+    400018: pPyramid2
+    400020: pTorus1
+    400022: pTorus2
+    400024: transform1
+    400026: transform10
+    400028: transform11
+    400030: transform12
+    400032: transform13
+    400034: transform14
+    400036: transform15
+    400038: transform16
+    400040: transform17
+    400042: transform2
+    400044: transform3
+    400046: transform4
+    400048: transform5
+    400050: transform6
+    400052: transform7
+    400054: transform8
+    400056: transform9
+    400058: Windup:pCone1
+    400060: Windup:pCube1
+    400062: Windup:pCube12
+    400064: Windup:pCube2
+    400066: Windup:pCube3
+    400068: Windup:pCube4
+    400070: Windup:pCube5
+    2300000: MasterStairCase
+    3300000: MasterStairCase
+    4300000: MasterStairCase
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  userData: 
