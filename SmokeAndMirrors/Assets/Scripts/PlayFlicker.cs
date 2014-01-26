@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayBangingNoiseLR2 : MonoBehaviour {
+public class PlayFlicker : MonoBehaviour {
+	
 
-	public AudioSource bangingSoundSource;
-	private bool hasPlayed;
+	public float durationOfFlicker;
 	public bool useHasPlayed;
 
+	private bool hasPlayed;
+	
 	// Use this for initialization
 	void Start () {
 		Messenger.AddListener<GameObject>("TriggerHit",HandleTrigger);
@@ -20,7 +22,7 @@ public class PlayBangingNoiseLR2 : MonoBehaviour {
 			{
 				hasPlayed = true;
 			}
-			bangingSoundSource.Play();
+			Messenger.Broadcast<float>("FlashlightFlicker",durationOfFlicker);
 		}
 	}
 }

@@ -3,9 +3,11 @@ using System;
 using System.Collections;
 
 public class Open : MonoBehaviour {
-
+	
 	public float activateRadius;
 	public Transform hingePoint;
+	public AudioClip startSound;
+	public AudioClip completionSound;	
 
 	private bool opened = false;
 
@@ -23,7 +25,7 @@ public class Open : MonoBehaviour {
 
 	IEnumerator DoorAnimation(Transform trans){
 		gameObject.GetComponent<BoxCollider>().enabled = false;
-
+		AudioSource.PlayClipAtPoint(startSound,transform.position,.4f);
 		float t = 0;
 
 		//have the door move
@@ -34,6 +36,7 @@ public class Open : MonoBehaviour {
 		}
 		
 		gameObject.GetComponent<BoxCollider>().enabled = true;
+		AudioSource.PlayClipAtPoint(completionSound,transform.position,.6f);
 		//activate ending action
 		//DoOnDoorFinish();
 	}
