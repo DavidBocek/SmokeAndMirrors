@@ -12,8 +12,14 @@ public class Door : MonoBehaviour {
 	public Vector3 initialRotation;
 	public AudioClip openClip;
 	public AudioClip closeClip;
+	public AudioClip lerpInSound;
 
 	public Transform teleportLocationTransform;
+	public Material lerpMaterial;
+
+	private float origR;
+	private float origG;
+	private float origB;
 
 	private Action DoOnDoorFinish = DoNothing;
 	private GameObject player;
@@ -28,6 +34,10 @@ public class Door : MonoBehaviour {
 			DoOnDoorFinish = (Action) Delegate.CreateDelegate(typeof(Action),this,mtd);
 		}
 		player = GameObject.FindWithTag("Player");
+		if (lerpMaterial != null){
+			origR = lerpMaterial.color.r; origG = lerpMaterial.color.g; origB = lerpMaterial.color.b;
+			lerpMaterial.color = new Color(origR,origG,origB,0.0f);
+		}
 	}
 
 	static void DoNothing(){}
@@ -111,6 +121,40 @@ public class Door : MonoBehaviour {
 		StartCoroutine("cCloseDoor",false);
 		StartCoroutine("cTeleport",true);
 		player.GetComponent<PlayerMovement>().onGrass = false;
+	}
+
+	void CloseDoorAndTeleportAndSpawnTexture(){
+		StartCoroutine("cCloseDoor",false);
+		StartCoroutine("cTeleport",true);
+		StartCoroutine("cLerpInTexture");
+		AudioSource.PlayClipAtPoint(lerpInSound,player.transform.position);
+	}
+
+	IEnumerator cLerpInTexture(){
+		float t = 0;
+		float newAlpha = 0;
+		while (t<=1){
+			newAlpha += .025f;
+			lerpMaterial.color = new Color(origR,origG,origB,newAlpha);
+			t += .025f;
+			yield return null;
+		}
+	}
+
+	void CloseDoorAndEnd(){
+		StartCoroutine("cCloseDoor",false);
+		StartCoroutine("cEndGame");
+	}
+
+	IEnumerator cEndGame(){
+		float t = 0;
+		while (t<=1f){
+			Camera.main.fieldOfView += t*5f;
+			yield return null;
+		}
+		player.gameObject.GetComponent<PlayerMovement>().canControl = false;
+		yield return new WaitForSeconds(15f);
+		Application.Quit();
 	}
 
 	#endregion

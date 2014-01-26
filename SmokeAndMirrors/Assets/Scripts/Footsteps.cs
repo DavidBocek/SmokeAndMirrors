@@ -53,9 +53,9 @@ public class Footsteps : MonoBehaviour {
 	/// </summary>
 	void PlaySound(){
 		if (playerMovement.onGrass){
-			source.PlayOneShot(grassFootstepSounds[Random.Range(0,footstepSounds.Length)]);
+			source.PlayOneShot(grassFootstepSounds[Random.Range(0,grassFootstepSounds.Length-1)]);
 		} else {
-			source.PlayOneShot(footstepSounds[Random.Range(0,footstepSounds.Length)]);
+			source.PlayOneShot(footstepSounds[Random.Range(0,footstepSounds.Length-1)]);
 		}
 	}
 	
