@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour {
 	public float maxFallSpeed;
 	public bool sprinting {get; set;}
 	public bool moving {get; set;}
+	public bool onGrass {get; set;}
 	public bool canControl {get; set;}
 
 	private Vector3 velocity;
@@ -19,6 +20,7 @@ public class PlayerMovement : MonoBehaviour {
 	private float dt;
 	// Use this for initialization
 	void Start () {
+		onGrass = true;
 		canControl = true;
 		controller = GetComponent<CharacterController>();
 		velocity = Vector3.zero;

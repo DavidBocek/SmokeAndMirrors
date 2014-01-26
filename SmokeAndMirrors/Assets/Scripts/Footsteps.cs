@@ -5,6 +5,7 @@ public class Footsteps : MonoBehaviour {
 
 	public AudioSource source;
 	public AudioClip[] footstepSounds;
+	public AudioClip grassFootstepSound;
 	public float walkFootstepTime;
 	public float sprintFootstepTime;
 
@@ -51,7 +52,11 @@ public class Footsteps : MonoBehaviour {
 	/// Plays a random footstep sound out of the array
 	/// </summary>
 	void PlaySound(){
-		source.PlayOneShot(footstepSounds[Random.Range(0,footstepSounds.Length)]);
+		if (playerMovement.onGrass){
+			source.PlayOneShot(grassFootstepSound);
+		} else {
+			source.PlayOneShot(footstepSounds[Random.Range(0,footstepSounds.Length)]);
+		}
 	}
 	
 }

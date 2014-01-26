@@ -24,7 +24,7 @@ public class Open : MonoBehaviour {
 	}
 
 	IEnumerator DoorAnimation(Transform trans){
-		gameObject.GetComponent<BoxCollider>().enabled = false;
+		//gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
 		AudioSource.PlayClipAtPoint(startSound,transform.position,.4f);
 		float t = 0;
 
@@ -35,7 +35,7 @@ public class Open : MonoBehaviour {
 			yield return null;
 		}
 		
-		gameObject.GetComponent<BoxCollider>().enabled = true;
+		//gameObject.GetComponentInChildren<BoxCollider>().enabled = true;
 		AudioSource.PlayClipAtPoint(completionSound,transform.position,1f);
 		//activate ending action
 		//DoOnDoorFinish();

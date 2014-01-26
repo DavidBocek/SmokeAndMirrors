@@ -107,13 +107,10 @@ public class Door : MonoBehaviour {
 		yield return null;
 	}
 
-	void CloseDoorAndTeleportWithFade(){
+	void CloseDoorAndTeleportAndTurnOffGrass(){
 		StartCoroutine("cCloseDoor",false);
-		StartCoroutine("cFadeBlack",false);
 		StartCoroutine("cTeleport",true);
-	}
-	IEnumerator cFadeBlack(bool getControl){
-		yield return null;
+		player.GetComponent<PlayerMovement>().onGrass = false;
 	}
 
 	#endregion

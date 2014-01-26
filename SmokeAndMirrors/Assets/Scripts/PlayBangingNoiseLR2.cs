@@ -6,6 +6,7 @@ public class PlayBangingNoiseLR2 : MonoBehaviour {
 	public AudioSource bangingSoundSource;
 	private bool hasPlayed;
 	public bool useHasPlayed;
+	public float delay = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -20,7 +21,10 @@ public class PlayBangingNoiseLR2 : MonoBehaviour {
 			{
 				hasPlayed = true;
 			}
-			bangingSoundSource.Play();
+			if (delay == 0)
+				bangingSoundSource.Play();
+			else
+				bangingSoundSource.PlayDelayed(delay);
 		}
 	}
 }
