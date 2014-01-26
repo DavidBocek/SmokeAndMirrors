@@ -107,5 +107,14 @@ public class Door : MonoBehaviour {
 		yield return null;
 	}
 
+	void CloseDoorAndTeleportWithFade(){
+		StartCoroutine("cCloseDoor",false);
+		StartCoroutine("cFadeBlack",false);
+		StartCoroutine("cTeleport",true);
+	}
+	IEnumerator cFadeBlack(bool getControl){
+		yield return null;
+	}
+
 	#endregion
 }
