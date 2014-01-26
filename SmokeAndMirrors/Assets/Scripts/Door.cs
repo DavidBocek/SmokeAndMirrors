@@ -10,7 +10,6 @@ public class Door : MonoBehaviour {
 	public Transform finishAnimationTransform;
 	public Transform hingePoint;
 	public Vector3 initialRotation;
-	public bool hasPlayed;
 	public AudioClip openClip;
 	public AudioClip closeClip;
 
@@ -18,6 +17,7 @@ public class Door : MonoBehaviour {
 
 	private Action DoOnDoorFinish = DoNothing;
 	private GameObject player;
+	private Vector3 originalEulerAngles;
 
 	// Use this for initialization
 	void Start () {
@@ -28,14 +28,16 @@ public class Door : MonoBehaviour {
 			DoOnDoorFinish = (Action) Delegate.CreateDelegate(typeof(Action),this,mtd);
 		}
 		player = GameObject.FindWithTag("Player");
-		hasPlayed = false;
 	}
 
 	static void DoNothing(){}
 
 
 	void HandleActionButton(Transform playerTransform){
-		if (Vector3.Distance(playerTransform.position,transform.position) <= activateRadius){
+		if (Vector3.Distance(playerTransform.position,transform.position) <= activateRadius && 
+		    Vector3.Distance(playerTransform.position,startAnimationTransform.position) < 
+		    Vector3.Distance(playerTransform.position,finishAnimationTransform.position)){
+
 			StartCoroutine("DoorAnimation",playerTransform);
 		}
 	}
