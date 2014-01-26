@@ -10,7 +10,6 @@ public class Open : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Messenger.AddListener<Transform>("PlayerActionButtonPressed",HandleActionButton);
-		player = GameObject.FindWithTag("Player");
 	}
 
 	void HandleActionButton(Transform playerTransform){

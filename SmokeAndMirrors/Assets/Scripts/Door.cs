@@ -10,6 +10,9 @@ public class Door : MonoBehaviour {
 	public Transform finishAnimationTransform;
 	public Transform hingePoint;
 	public Vector3 initialRotation;
+	public bool hasPlayed;
+	public AudioClip openClip;
+	public AudioClip closeClip;
 
 	public Transform teleportLocationTransform;
 
@@ -25,6 +28,7 @@ public class Door : MonoBehaviour {
 			DoOnDoorFinish = (Action) Delegate.CreateDelegate(typeof(Action),this,mtd);
 		}
 		player = GameObject.FindWithTag("Player");
+		hasPlayed = false;
 	}
 
 	static void DoNothing(){}
@@ -56,10 +60,12 @@ public class Door : MonoBehaviour {
 		t = 0;
 		yield return new WaitForSeconds(.5f);
 		//move through door to end position, and have the door move
+		AudioSource.PlayClipAtPoint (openClip, transform.position);
 		while (t<=1f){
 			if (tRot <=.75){
 				transform.RotateAround(hingePoint.position, Vector3.up,1.2f);
 			}
+
 			if (tRot >= .5){
 				Vector3 newPos = Vector3.Lerp(trans.position,endPointPosition,t);
 				trans.position = newPos;
@@ -80,7 +86,7 @@ public class Door : MonoBehaviour {
 		StartCoroutine("cCloseDoor",true);
 	}
 	IEnumerator cCloseDoor(bool getControl){
-		//play close sound
+		AudioSource.PlayClipAtPoint (closeClip, transform.position);
 		transform.RotateAround(hingePoint.position,Vector3.up,-90f);
 		transform.localEulerAngles = initialRotation;
 		yield return new WaitForSeconds(.5f);
